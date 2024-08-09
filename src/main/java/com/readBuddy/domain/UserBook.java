@@ -16,6 +16,14 @@ public class UserBook {
     @JoinColumn(name="user_id")
     private User user;
 
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name="read_amount_id")
+    private ReadAmount readAmount;
+
+// 양방향 고려
+//    @OneToOne(mappedBy = "userBook", fetch = LAZY)
+//    private Diary diary;
+
     private String title;
 
     private ReadStatus status;
