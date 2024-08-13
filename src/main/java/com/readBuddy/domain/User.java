@@ -31,4 +31,6 @@ public class User {
     @JoinColumn(name="read_amount_id")
     private ReadAmount readAmount;
 
+
+
 }
