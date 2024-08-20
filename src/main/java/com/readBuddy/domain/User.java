@@ -31,6 +31,13 @@ public class User {
     @JoinColumn(name="read_amount_id")
     private ReadAmount readAmount;
 
+    public void changeName(String name) {
+        this.name = name;
+    }
+
+    public void changeGenre(Genre genre) {
+        this.genre = genre;
+    }
 
 
 }

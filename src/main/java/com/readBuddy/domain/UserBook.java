@@ -35,9 +35,10 @@ public class UserBook {
     private LocalTime finishDate;
     private int pages;
 
-    public void bookAndUser(User user) {
+    public Long bookAndUser(User user) {
         user.getUserBooks().add(this);
         this.user = user;
+        return this.id;
     }
 
     public void updatePages(int page){
@@ -49,4 +50,7 @@ public class UserBook {
     }
 
 
+    public void changeTitle(String title) {
+        this.title = title;
+    }
 }

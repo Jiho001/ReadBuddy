@@ -3,11 +3,10 @@ package com.readBuddy.dto;
 import lombok.Data;
 
 @Data
-public class BookDto {
+public class UserResponseDto {
     private Long id;
-    private String title;
 
-    public BookDto(Long id) {
+    public UserResponseDto(Long id) {
         this.id = id;
     }
 }
