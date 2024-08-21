@@ -1,21 +1,19 @@
 package com.readBuddy.controller.api;
-
 import com.readBuddy.domain.User;
 import com.readBuddy.domain.UserBook;
 import com.readBuddy.dto.BookDto;
 import com.readBuddy.dto.UserRequestDto;
 import com.readBuddy.dto.UserResponseDto;
+import com.readBuddy.service.BookService;
 import com.readBuddy.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.awt.print.Book;
-
 
 @RestController
 @RequiredArgsConstructor
 public class HomeApiController {
     private final UserService userService;
+    private final BookService bookService;
 
     public UserResponseDto joinMember(UserRequestDto request) {
         User user = new User();
@@ -27,13 +25,16 @@ public class HomeApiController {
     }
 
     public BookDto registerBook(Long id, BookDto request) {
-        User user = userService.findOne(id);
-
         UserBook userBook = new UserBook();
         userBook.changeTitle(request.getTitle());
-        Long bookId = userBook.bookAndUser(user);
+        Long bookId = bookService.registerBook(userBook, id);
+
         return new BookDto(bookId);
     }
+
+
+
+
 
 
 }
