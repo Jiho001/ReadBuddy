@@ -21,3 +21,6 @@ spring:
 logging:
   level:
     org.hibernate.SQL: debug
+
+api:
+  key: af4e71243860c55afd7c3887ee99ca217e3d954428490dbe7a69ea9b60212e0f

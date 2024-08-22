@@ -7,6 +7,7 @@ import com.readBuddy.dto.UserResponseDto;
 import com.readBuddy.service.BookService;
 import com.readBuddy.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -15,6 +16,7 @@ public class HomeApiController {
     private final UserService userService;
     private final BookService bookService;
 
+    @PostMapping("/join/members")
     public UserResponseDto joinMember(UserRequestDto request) {
         User user = new User();
         user.changeName(request.getName());
@@ -24,6 +26,7 @@ public class HomeApiController {
         return new UserResponseDto(id);
     }
 
+    @PostMapping("/register/books")
     public BookDto registerBook(Long id, BookDto request) {
         UserBook userBook = new UserBook();
         userBook.changeTitle(request.getTitle());
