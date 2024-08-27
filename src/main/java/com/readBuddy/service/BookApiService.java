@@ -11,13 +11,13 @@ public class BookApiService {
     @Value("${api.key}")
     private String apiKey;
 
-    public Long recommendBook() {
+    public void recommendBook() {
         RestClient restClient = RestClient.create();
         BookApiDto recomBook = restClient.post()
                 .uri("https://nl.go.kr/NL/search/openApi/saseoApi.do")
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .body(BookApiDto.class);
-        return 0L;
     }
+
 }

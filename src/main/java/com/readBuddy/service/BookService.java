@@ -3,12 +3,15 @@ package com.readBuddy.service;
 import com.readBuddy.domain.ReadStatus;
 import com.readBuddy.domain.User;
 import com.readBuddy.domain.UserBook;
+import com.readBuddy.dto.BookDto;
 import com.readBuddy.repository.BookRepository;
 import com.readBuddy.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -35,6 +38,11 @@ public class BookService {
     public void updateStatus(Long id, ReadStatus status) {
         UserBook book = bookRepository.findOne(id);
         book.updateStatus(status);
+    }
+
+    // 읽은 모든 책 조회
+    public List<UserBook> findAll() {
+        return bookRepository.findAll();
     }
 
 }
