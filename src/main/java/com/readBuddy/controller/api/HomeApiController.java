@@ -1,4 +1,5 @@
 package com.readBuddy.controller.api;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.readBuddy.domain.User;
 import com.readBuddy.domain.UserBook;
 import com.readBuddy.dto.BookDto;
@@ -37,8 +38,9 @@ public class HomeApiController {
         return new BookDto(bookId);
     }
 
+    // 11:문학, 6:인문과학, 5:사회과학 4:자연과학
     @PostMapping("/recomm/book")
-    public String recommendBook() {
-        return bookApiService.recommendBook();
+    public String recommendBook(String jenre) throws JsonProcessingException {
+        return bookApiService.recommendBook(jenre);
     }
 }

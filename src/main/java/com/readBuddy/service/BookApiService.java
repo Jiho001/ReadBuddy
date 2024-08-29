@@ -1,6 +1,8 @@
 package com.readBuddy.service;
 
-import com.readBuddy.dto.BookApiDto;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -13,20 +15,22 @@ public class BookApiService {
     @Value("${api.key}")
     private String apiKey;
 
-    public String recommendBook() {
+    public String recommendBook(String jenre) throws JsonProcessingException {
         RestClient restClient = RestClient.builder()
                 .baseUrl("https://nl.go.kr/NL/search/openApi/saseoApi.do")
                 .build();
 
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
         formData.add("key", apiKey);
-        formData.add("drCode", "11");
+        formData.add("drCode", jenre);
+        formData.add("endRowNumApi", "5");  // 추천 권수
 
         String response = restClient.post()
                 .contentType(MediaType.MULTIPART_FORM_DATA)
                 .body(formData)
                 .retrieve()
                 .body(String.class);
+
 
         return response;
     }
