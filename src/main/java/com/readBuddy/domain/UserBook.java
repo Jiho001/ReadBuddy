@@ -33,6 +33,7 @@ public class UserBook {
     private ReadStatus status;
     private LocalTime startDate;
     private LocalTime finishDate;
+    private boolean heart;
     private int pages;
 
     public Long bookAndUser(User user) {
