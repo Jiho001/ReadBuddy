@@ -1,8 +1,8 @@
 package com.readBuddy.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.XML;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,18 @@ public class BookApiService {
                 .retrieve()
                 .body(String.class);
 
-
-        return response;
+        // 어케<list> - <item> - <recomtitle>, <recomauthor>, <recomfilepath>, <recomcontens> 들을 리스트로 만들어서 반환하지????
+        return xml2Json(response);
     }
+
+    private String xml2Json(String xml) {
+
+        JSONObject json = XML.toJSONObject(xml);
+        String jsonStr = json.toString(4);
+        return jsonStr;
+    }
+
+//    private String json2resp(String jsonStr) {
+//
+//    }
 }
