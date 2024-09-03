@@ -3,6 +3,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.JacksonFeature;
 import com.readBuddy.domain.User;
 import com.readBuddy.domain.UserBook;
+import com.readBuddy.dto.BookApiDto;
 import com.readBuddy.dto.BookDto;
 import com.readBuddy.dto.UserRequestDto;
 import com.readBuddy.dto.UserResponseDto;
@@ -42,7 +43,7 @@ public class HomeApiController {
 
     // 11:문학, 6:인문과학, 5:사회과학 4:자연과학
     @PostMapping("/recomm/book/{jenre}")
-    public String recommendBook(@PathVariable String jenre) throws JsonProcessingException {
+    public BookApiDto recommendBook(@PathVariable String jenre) throws JsonProcessingException {
         return bookApiService.recommendBook(jenre);
     }
 }

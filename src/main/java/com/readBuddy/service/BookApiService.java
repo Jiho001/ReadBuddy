@@ -1,6 +1,9 @@
 package com.readBuddy.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.readBuddy.dto.BookApiDto;
 import org.json.XML;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +18,7 @@ public class BookApiService {
     @Value("${api.key}")
     private String apiKey;
 
-    public String recommendBook(String jenre) throws JsonProcessingException {
+    public BookApiDto recommendBook(String jenre) throws JsonProcessingException {
         RestClient restClient = RestClient.builder()
                 .baseUrl("https://nl.go.kr/NL/search/openApi/saseoApi.do")
                 .build();
@@ -31,10 +34,12 @@ public class BookApiService {
                 .retrieve()
                 .body(String.class);
 
-        // 어케<list> - <item> - <recomtitle>, <recomauthor>, <recomfilepath>, <recomcontens> 들을 리스트로 만들어서 반환하지????
-        return xml2Json(response);
+        String jsonStr = xml2Json(response);
+
+        return json2dto(jsonStr);
     }
 
+    // xml -> JSON
     private String xml2Json(String xml) {
 
         JSONObject json = XML.toJSONObject(xml);
@@ -42,7 +47,11 @@ public class BookApiService {
         return jsonStr;
     }
 
-//    private String json2resp(String jsonStr) {
-//
-//    }
+    // json 파싱
+    private BookApiDto json2dto(String jsonStr) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        BookApiDto dto = objectMapper.readValue(jsonStr, BookApiDto.class);
+        return dto;
+    }
 }
