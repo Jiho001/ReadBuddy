@@ -1,12 +1,13 @@
 package com.readBuddy.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 import static jakarta.persistence.FetchType.LAZY;
 
-@Entity
+@Entity @Getter
 public class Diary {
     @Id @GeneratedValue
     @Column(name="diary_id")
