@@ -2,6 +2,7 @@ package com.readBuddy.service;
 
 import com.readBuddy.domain.Diary;
 import com.readBuddy.domain.User;
+import com.readBuddy.repository.DiaryRepository;
 import com.readBuddy.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;

@@ -23,4 +23,11 @@ public class Diary {
     private String content;
     private LocalDateTime uploadDate;
 
+    public void connectUser(User user) {
+        this.user = user;
+    }
+
+    public void writeContent(String content) {
+        this.content = content;
+    }
 }

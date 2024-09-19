@@ -39,6 +39,9 @@ public class User {
         this.genre = genre;
     }
 
-
+    public void diaryAndUser(Diary diary) {
+        this.diary = diary;
+        diary.connectUser(this);
+    }
 
 }
